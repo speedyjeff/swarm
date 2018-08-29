@@ -23,7 +23,7 @@ Use the "User" radio button to define your own implementation.
 
 ![quad](https://github.com/speedyjeff/swarm/blob/master/media/quad.png)
 
-##Easy
+## Easy
 ```python
 # Parameters:
 # p     - Previous state
@@ -93,7 +93,7 @@ def Move(p,h,w,field):
   return 5 # Move.Defend
 ```
 
-##Hard
+## Hard
 ```python
 # Parameters:
 # p     - Previous state
@@ -176,7 +176,7 @@ def Move(p,h,w,field):
   return 5 # Move.Defend
 ```
 
-##Random
+## Random
 ```python
 # Parameters:
 # p     - Previous state
@@ -240,7 +240,7 @@ def Move(p,h,w,field):
         return move
 ```
 
-##Human
+## Human
 ```python
 # Parameters:
 # p     - Previous state
