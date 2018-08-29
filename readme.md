@@ -1,11 +1,10 @@
 # Swarm
 
-**"A single ant or bee isn't smart, but their colonies are. The study
+
+"A single ant or bee isn't smart, but their colonies are. The study
 of swarm intelligence is providing insights that can help humans
 manage complex systems, from truck routing to military robots."
-- by Peter Miller (published: July 2007)**
-
-[The Genius of Swarms](https://nphsworld16huggins.files.wordpress.com/2015/11/nphsemergencysubplans-1116.pdf)
+- by Peter Miller [The Genius of Swarms published: July 2007](https://nphsworld16huggins.files.wordpress.com/2015/11/nphsemergencysubplans-1116.pdf)
 
 The game consists of 4 swarms (Yellow, Red, Green and Blue). Each member of the swarm uses the same algorithm for decision making. The individuatal is presented with a limited view of their surroundings, thus forcing decisions based on neighboring individuals and their environment, and not the big picture. There are no inherit leaders, unless one is made. The swarms and individuals take turns making moves.
 
@@ -14,14 +13,14 @@ The objective is to cover (leave squares colored with your color) the majority o
 The individuals make decisions based on python scripts. Below are a few examples of the scripts used as the default implementation.
 Use the "User" radio button to define your own implementation. 
 
-##Game play
+## Game play
 ![start screen](https://github.com/speedyjeff/swarm/blob/master/media/start.png)
 
 ![hills](https://github.com/speedyjeff/swarm/blob/master/media/hills.png)
 
 ![maze](https://github.com/speedyjeff/swarm/blob/master/media/maze.png)
 
-![quad](https://github.com/speedyjeff/swarm/blob/master/media/quad.png)
+![quads](https://github.com/speedyjeff/swarm/blob/master/media/quads.png)
 
 ## Easy
 ```python
