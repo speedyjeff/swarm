@@ -61,6 +61,7 @@ namespace Swarm
         private byte[][] m_scriptsHard = new byte[][] { new byte[0], Properties.Resources.RedGreenComputerHard, Properties.Resources.BlueYellowComputerHard, Properties.Resources.RedGreenComputerHard, Properties.Resources.BlueYellowComputerHard };
         private byte[] m_scriptRandom = Properties.Resources.Random;
         private SwarmGame m_swarmGame;
+        private SolidColorBrush[] m_rectColors = new SolidColorBrush[] { new SolidColorBrush(Color.FromRgb(255, 255, 255)), new SolidColorBrush(Color.FromRgb(255, 0, 0)), new SolidColorBrush(Color.FromRgb(0, 0, 255)), new SolidColorBrush(Color.FromRgb(0, 255, 0)), new SolidColorBrush(Color.FromRgb(255, 255, 0)) };
 
         static MainWindow()
         {
@@ -383,11 +384,14 @@ namespace Swarm
                         case PlotState.Forbidden: opacity = 0f; break;
                     }
 
+                    FlipColor(color, h, w, opacity);
+                    /* when there were 5 types of rectangles
                     FlipColor(PlotColor.Clear, h, w, (PlotColor.Clear == color) ? opacity : 0f);
                     FlipColor(PlotColor.Red, h, w, (PlotColor.Red == color) ? opacity : 0f);
                     FlipColor(PlotColor.Blue, h, w, (PlotColor.Blue == color) ? opacity : 0f);
                     FlipColor(PlotColor.Green, h, w, (PlotColor.Green == color) ? opacity : 0f);
                     FlipColor(PlotColor.Yellow, h, w, (PlotColor.Yellow == color) ? opacity : 0f);
+                    */
                 }
             }
         }
@@ -429,8 +433,9 @@ namespace Swarm
 
         private void FlipColor(PlotColor color, int height, int width, float opacity)
         {
-            string controlName;
+            string controlName = "Transparent";
 
+            /*
             controlName = "";
             switch (color)
             {
@@ -440,9 +445,10 @@ namespace Swarm
                 case PlotColor.Yellow: controlName = "Yellow"; break;
                 case PlotColor.Clear: controlName = "Transparent"; break;
             }
+            */
             controlName += "_" + height + "_" + width;
 
-            ModifyRectangle(controlName, opacity);
+            ModifyRectangle(controlName, opacity, m_rectColors[(int)color]);
         }
 
         private void ModifyRectangle(string controlName, float opacity)
@@ -451,6 +457,15 @@ namespace Swarm
             rect = (m_root.FindName(controlName) as Rectangle);
 
             rect.Opacity = opacity;
+        }
+
+        private void ModifyRectangle(string controlName, float opacity, SolidColorBrush brush)
+        {
+            Rectangle rect;
+            rect = (m_root.FindName(controlName) as Rectangle);
+
+            rect.Opacity = opacity;
+            rect.Fill = brush;
         }
 
         private void ModifyText(string controlName, string text)
