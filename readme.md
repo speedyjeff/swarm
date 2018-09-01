@@ -6,7 +6,7 @@ of swarm intelligence is providing insights that can help humans
 manage complex systems, from truck routing to military robots."
 - by Peter Miller [The Genius of Swarms published: July 2007](https://nphsworld16huggins.files.wordpress.com/2015/11/nphsemergencysubplans-1116.pdf)
 
-The game consists of 4 swarms (Yellow, Red, Green and Blue). Each member of the swarm uses the same algorithm for decision making. The individuatal is presented with a limited view of their surroundings, thus forcing decisions based on neighboring individuals and their environment, and not the big picture. There are no inherit leaders, unless one is made. The swarms and individuals take turns making moves.
+The game consists of 4 swarms (Yellow, Red, Green and Blue). Each member of the swarm uses the same algorithm for decision making. The individual is presented with a limited view of their surroundings, thus forcing decisions based on neighboring individuals and their environment, and not the big picture. There are no inherit leaders, unless one is made. The swarms and individuals take turns making moves.
 
 The objective is to cover (leave squares colored with your color) the majority of the board.
 
