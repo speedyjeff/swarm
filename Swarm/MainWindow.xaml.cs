@@ -57,9 +57,9 @@ namespace Swarm
         private static List<string> m_uiWorkQueue;
         private DispatcherTimer m_uiTimer;
         private string[] m_scripts;
-        private byte[][] m_scriptsEasy = new byte[][] { new byte[0], Properties.Resources.RedGreenComputerEasy, Properties.Resources.BlueYellowComputerEasy, Properties.Resources.RedGreenComputerEasy, Properties.Resources.BlueYellowComputerEasy };
-        private byte[][] m_scriptsHard = new byte[][] { new byte[0], Properties.Resources.RedGreenComputerHard, Properties.Resources.BlueYellowComputerHard, Properties.Resources.RedGreenComputerHard, Properties.Resources.BlueYellowComputerHard };
-        private byte[] m_scriptRandom = Properties.Resources.Random;
+        private string[] m_scriptsEasy = new string[] { "", "RedGreenComputerEasy", "BlueYellowComputerEasy", "RedGreenComputerEasy", "BlueYellowComputerEasy" };
+        private string[] m_scriptsHard = new string[] { "", "RedGreenComputerHard", "BlueYellowComputerHard", "RedGreenComputerHard", "BlueYellowComputerHard" };
+        private string m_scriptRandom = "Random";
         private SwarmGame m_swarmGame;
         private SolidColorBrush[] m_rectColors = new SolidColorBrush[] { new SolidColorBrush(Color.FromRgb(255, 255, 255)), new SolidColorBrush(Color.FromRgb(255, 0, 0)), new SolidColorBrush(Color.FromRgb(0, 0, 255)), new SolidColorBrush(Color.FromRgb(0, 255, 0)), new SolidColorBrush(Color.FromRgb(255, 255, 0)) };
 
@@ -246,11 +246,24 @@ namespace Swarm
             return script;
         }
 
-        private string GetManifestResource(byte[] content)
+        private string GetManifestResource(string resourceName)
         {
-            // convert the byte[] into a string
-            var script = System.Text.Encoding.Default.GetString(content);
-            return script.Replace("\r\n", System.Environment.NewLine);
+            // get the resource and return
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            foreach (var allResourceName in assembly.GetManifestResourceNames())
+            {
+                if (!allResourceName.Contains(resourceName, StringComparison.OrdinalIgnoreCase)) continue;
+
+                using (var stream = assembly.GetManifestResourceStream(allResourceName))
+                {
+                    var bytes = new byte[stream.Length];
+                    stream.Read(bytes, 0, bytes.Length);
+                    var script = System.Text.Encoding.Default.GetString(bytes);
+                    return script.Replace("\r\n", System.Environment.NewLine);
+                }
+            }
+
+            throw new Exception($"failed to find resource : {resourceName}");
         }
 
         private void FieldClick(object o, EventArgs e)
